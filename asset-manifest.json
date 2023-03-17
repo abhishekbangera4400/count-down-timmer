@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/count-down-timmer/static/css/main.073c9b0a.css",
-    "main.js": "/count-down-timmer/static/js/main.df638045.js",
+    "main.js": "/count-down-timmer/static/js/main.c10ffb9d.js",
     "static/js/787.86e59442.chunk.js": "/count-down-timmer/static/js/787.86e59442.chunk.js",
     "static/media/logo.svg": "/count-down-timmer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/count-down-timmer/index.html",
     "main.073c9b0a.css.map": "/count-down-timmer/static/css/main.073c9b0a.css.map",
-    "main.df638045.js.map": "/count-down-timmer/static/js/main.df638045.js.map",
+    "main.c10ffb9d.js.map": "/count-down-timmer/static/js/main.c10ffb9d.js.map",
     "787.86e59442.chunk.js.map": "/count-down-timmer/static/js/787.86e59442.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.df638045.js"
+    "static/js/main.c10ffb9d.js"
   ]
 }
