@@ -1,16 +1,20 @@
-import React,{useEffect} from "react"
+import React,{useEffect,useCallback,useState} from "react"
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [timer, setTimer] = useState(60);    
+  const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
 
   useEffect(() => {
-    
-  
-    return () => {
-      // clearInterval()
-    }
-  }, [])
+    timer > 0 && setTimeout(timeOutCallback, 1000);
+  }, [timer, timeOutCallback]);
+
+const resetTimer = function () {
+  if (!timer) {
+    setTimer(180);
+  }
+};
   
   const displayTimer = (timeInSeconds, id = '') => {
     let timerId;
@@ -46,7 +50,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
       
-          
+        <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span>
           <span className="font-12 orange orange-link">
             <button onClick={()=>{displayTimer(180)}}>start</button>
           <span id="otpCountDownTimer" />{" "}
