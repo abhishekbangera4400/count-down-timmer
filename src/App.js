@@ -21,35 +21,26 @@ const resetTimer = function () {
     var timer = timeInSeconds,
       minutes,
       seconds;
+    timerId = window.setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
 
-      const updateTime=()=>{
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-  
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-  
-        const elem = document.getElementById('otpCountDownTimer');
-        if (elem === null) {
-          clearInterval(timerId);
-        }
-        elem.innerHTML =
-          'OTP will expire in ' + minutes + ':' + seconds;
-  
-        if (--timer < 0) {
-          // setDisplayTime(false);
-          elem.innerHTML = `OTP expired! Please click on <span style="font-weight:600">RESEND OTP</span> to generate a new OTP.`; //SAFD - 129719 - Gayathri - 21-jan-22
-          clearInterval(timerId);
-        }
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      const elem = document.getElementById('otpCountDownTimer');
+      if (elem === null) {
+        clearInterval(timerId);
       }
+      elem.innerHTML =
+        'OTP will expire in ' + minutes + ':' + seconds;
 
-      async function update(){
-        updateTime()
-        timerId=setTimeout(update, 1000); 
-    }
-    update();
-   
-
+      if (--timer < 0) {
+        // setDisplayTime(false);
+        elem.innerHTML = `OTP expired! Please click on <span style="font-weight:600">RESEND OTP</span> to generate a new OTP.`; //SAFD - 129719 - Gayathri - 21-jan-22
+        clearInterval(timerId);
+      }
+    }, 1000);
   };
   return (
     <div className="App">
