@@ -54,6 +54,7 @@ const resetTimer = function () {
           <span className="font-12 orange orange-link">
             <button onClick={()=>{displayTimer(180)}}>start</button>
           <span id="otpCountDownTimer" />{" "}
+          <span>Time:17:29</span>
         </span>
         
       </header>
