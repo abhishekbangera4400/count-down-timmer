@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [timer, setTimer] = useState(60);    
+  const [timer, setTimer] = useState(180);    
   const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
 
-  useEffect(() => {
-    timer > 0 && setTimeout(timeOutCallback, 1000);
-  }, [timer, timeOutCallback]);
+  // useEffect(() => {
+  //   timer > 0 && setTimeout(timeOutCallback, 1000);
+  // }, [timer, timeOutCallback]);
 
 const resetTimer = function () {
   if (!timer) {
@@ -21,7 +21,7 @@ const resetTimer = function () {
     var timer = timeInSeconds,
       minutes,
       seconds;
-    timerId = setInterval(function () {
+    timerId = setInterval( () =>{
       minutes = parseInt(timer / 60, 10);
       seconds = parseInt(timer % 60, 10);
 
@@ -50,7 +50,7 @@ const resetTimer = function () {
           Edit <code>src/App.js</code> and save to reload.
         </p>
       
-        <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span>
+        {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
           <span className="font-12 orange orange-link">
             <button onClick={()=>{displayTimer(180)}}>start</button>
           <span id="otpCountDownTimer" />{" "}
