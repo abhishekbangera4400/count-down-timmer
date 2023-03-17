@@ -21,7 +21,8 @@ const resetTimer = function () {
     var timer = timeInSeconds,
       minutes,
       seconds;
-      const updateTime=()=> {
+
+      const updateTime=()=>{
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
   
@@ -41,7 +42,14 @@ const resetTimer = function () {
           clearInterval(timerId);
         }
       }
-    timerId = setInterval(updateTime, 1000);
+
+      async function update(){
+        updateTime()
+        timerId=setTimeout(update, 1000); 
+    }
+    update();
+   
+
   };
   return (
     <div className="App">
