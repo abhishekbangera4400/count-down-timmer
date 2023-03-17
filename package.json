@@ -1,5 +1,5 @@
 {
-  "homepage": "https://abhishekbangera4400.github.io/development",
+  "homepage": "https://abhishekbangera4400.github.io/count-down-timmer/",
   "name": "count-down-timmer",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +10,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "gh-pages": "^5.0.0"
   },
   "scripts": {
     "predeploy": "npm run build",
