@@ -2,6 +2,7 @@ import React,{useEffect,useCallback,useState} from "react"
 import logo from './logo.svg';
 import './App.css';
 import {SecondsTohhmmss} from './utils'
+import CountdownTimer from './CountdownTimer';
 
 
 let offset = null, interval = null
@@ -42,13 +43,13 @@ function App() {
       }
     }, 1000);
   };
+  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+  const NOW_IN_MS = new Date().getTime();
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+       
       
         {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
           <span className="font-12 orange orange-link">
@@ -59,7 +60,10 @@ function App() {
           <h3  className="seconds"> {tiime}</h3> */}
           <h3>{`${minutes}:${seconds}`}</h3>
         </span>
-        <countDown></countDown>
+        <div>
+      <h1>Countdown Timer</h1>
+      <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+    </div>
       </header>
     </div>
   );
