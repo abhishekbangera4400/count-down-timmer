@@ -1,100 +1,68 @@
-import React, { Component } from 'react'
+import React,{useEffect,useCallback,useState} from "react"
+import logo from './logo.svg';
+import './App.css';
 import {SecondsTohhmmss} from './utils'
-import PropTypes from 'prop-types'
+
 
 let offset = null, interval = null
 
-/**
- * Timer module
- * A simple timer component.
-**/
-export default class App extends Component {
-  static get propTypes () {
-    return {
-      options: PropTypes.object
-    }
-  }
 
-  constructor(props) {
-    super(props)
-    this.state = { clock: 0, time: '' }
-  }
+function App() {
+  const [minutes, setMinutes] = useState(0); 
+  const [seconds, setSeconds] = useState(0); 
 
-  componentDidMount() {
-    this.play()
-  }
 
-  componentWillUnmount() {
-    this.pause()
-  }
 
-  pause() {
-    if (interval) {
-      clearInterval(interval)
-      interval = null
-    }
-  }
 
-  play() {
-    if (!interval) {
-      offset = Date.now()
-      interval = setInterval(this.update.bind(this), 1000)
-    }
-  }
+  
+  const displayTimer = (timeInSeconds, id = '') => {
+    let timerId;
+    var timer = timeInSeconds,
+      minutes,
+      seconds;
+    timerId = window.setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
 
-  reset() {
-    let clockReset = 0
-    this.setState({clock: clockReset })
-    let time = SecondsTohhmmss(clockReset / 1000)
-    this.setState({time: time })
-  }
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      setMinutes(minutes)
+      setSeconds(seconds)
+      const elem = document.getElementById('otpCountDownTimer');
+      if (elem === null) {
+        clearInterval(timerId);
+      }
+      elem.innerHTML =
+        'OTP will expire in ' + minutes + ':' + seconds;
 
-  update() {
-    let clock = this.state.clock
-    clock += this.calculateOffset()
-    this.setState({clock: clock })
-    let time = SecondsTohhmmss(clock / 1000)
-    this.setState({time: time })
-  }
-
-  calculateOffset() {
-    let now = Date.now()
-    let newOffset = now - offset
-    offset = now
-    return newOffset
-  }
-
-  render() {
-    const timerStyle = {
-      margin: "0px",
-      padding: "2em"
-    };
-
-    const buttonStyle = {
-      background: "#fff",
-      color: "#666",
-      border: "1px solid #ddd",
-      marginRight: "5px",
-      padding: "10px",
-      fontWeight: "200"
-    };
-
-    const secondsStyles = {
-      fontSize: "200%",
-      fontWeight: "200",
-      lineHeight: "1.5",
-      margin: "0",
-      color: "#666"
-    };
-
-    return (
-      <div style={timerStyle} className="react-timer">
-        <h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3>
-        <br />
-        <button onClick={this.reset.bind(this)} style={buttonStyle} >reset</button>
-        <button onClick={this.play.bind(this)} style={buttonStyle} >play</button>
-        <button onClick={this.pause.bind(this)} style={buttonStyle} >pause</button>
-      </div>
-    )
-  }
+      if (--timer < 0) {
+        // setDisplayTime(false);
+        elem.innerHTML = `OTP expired! Please click on <span style="font-weight:600">RESEND OTP</span> to generate a new OTP.`; //SAFD - 129719 - Gayathri - 21-jan-22
+        clearInterval(timerId);
+      }
+    }, 1000);
+  };
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+      
+        {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
+          <span className="font-12 orange orange-link">
+            <button onClick={()=>{displayTimer(180)}}>start</button>
+          <span id="otpCountDownTimer" />{" "}
+          <span>Time:17:29</span>
+          {/* <button onClick={()=>{play()}}>click start</button>
+          <h3  className="seconds"> {tiime}</h3> */}
+          <h3>{`${minutes}:${seconds}`}</h3>
+        </span>
+        <countDown></countDown>
+      </header>
+    </div>
+  );
 }
+
+export default App;
