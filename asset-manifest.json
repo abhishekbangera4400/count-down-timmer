@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/count-down-timmer/static/css/main.073c9b0a.css",
-    "main.js": "/count-down-timmer/static/js/main.8ba2c9ae.js",
+    "main.css": "/count-down-timmer/static/css/main.e6c13ad2.css",
+    "main.js": "/count-down-timmer/static/js/main.a33ff3ac.js",
     "static/js/787.86e59442.chunk.js": "/count-down-timmer/static/js/787.86e59442.chunk.js",
-    "static/media/logo.svg": "/count-down-timmer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/count-down-timmer/index.html",
-    "main.073c9b0a.css.map": "/count-down-timmer/static/css/main.073c9b0a.css.map",
-    "main.8ba2c9ae.js.map": "/count-down-timmer/static/js/main.8ba2c9ae.js.map",
+    "main.e6c13ad2.css.map": "/count-down-timmer/static/css/main.e6c13ad2.css.map",
+    "main.a33ff3ac.js.map": "/count-down-timmer/static/js/main.a33ff3ac.js.map",
     "787.86e59442.chunk.js.map": "/count-down-timmer/static/js/787.86e59442.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.8ba2c9ae.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.a33ff3ac.js"
   ]
 }
