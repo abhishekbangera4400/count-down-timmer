@@ -1,94 +1,73 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React,{useEffect,useCallback,useState} from "react"
+import logo from './logo.svg';
+import './App.css';
+import {SecondsTohhmmss} from './utils'
+import CountdownTimer from './CountdownTimer';
 
 
-const App = () => {
-
-	// We need ref in this, because we are dealing
-	// with JS setInterval to keep track of it and
-	// stop it when needed
-	const Ref = useRef(null);
-
-	// The state for our timer
-	const [timer, setTimer] = useState('00:00:00');
+let offset = null, interval = null
 
 
-	const getTimeRemaining = (e) => {
-		const total = Date.parse(e) - Date.parse(new Date());
-		const seconds = Math.floor((total / 1000) % 60);
-		const minutes = Math.floor((total / 1000 / 60) % 60);
-		const hours = Math.floor((total / 1000 / 60 / 60) % 24);
-		return {
-			total, hours, minutes, seconds
-		};
-	}
+function App() {
+  // const [minutes, setMinutes] = useState(0); 
+  // const [seconds, setSeconds] = useState(0); 
 
 
-	const startTimer = (e) => {
-		let { total, hours, minutes, seconds }
-					= getTimeRemaining(e);
-		if (total >= 0) {
-
-			// update the timer
-			// check if less than 10 then we need to
-			// add '0' at the beginning of the variable
-			setTimer(
-				(hours > 9 ? hours : '0' + hours) + ':' +
-				(minutes > 9 ? minutes : '0' + minutes) + ':'
-				+ (seconds > 9 ? seconds : '0' + seconds)
-			)
-		}
-	}
 
 
-	const clearTimer = (e) => {
+  
+  const displayTimer = (timeInSeconds, id = '') => {
+    let timerId;
+    let timer = new Date()
+    timer.setSeconds(timer.getSeconds() + timeInSeconds)
+    let total;
+    let seconds;
+    let minutes;
 
-		// If you adjust it you should also need to
-		// adjust the Endtime formula we are about
-		// to code next	
-		setTimer('00:00:10');
 
-		// If you try to remove this line the
-		// updating of timer Variable will be
-		// after 1000ms or 1sec
-		if (Ref.current) clearInterval(Ref.current);
-		const id = setInterval(() => {
-			startTimer(e);
-		}, 1000)
-		Ref.current = id;
-	}
+    timerId = window.setInterval(function () {
+      total = Date.parse(timer) - Date.parse(new Date());
+       minutes= Math.floor((total / 1000 / 60) % 60);
+       seconds = Math.floor((total / 1000) % 60);
 
-	const getDeadTime = () => {
-		let deadline = new Date();
+      
+      const elem = document.getElementById('otpCountDownTimer');
+      if (elem === null) {
+        clearInterval(timerId);
+      }
+      elem.innerHTML =
+        'OTP will expire in ' + minutes + ':' + seconds;
 
-		// This is where you need to adjust if
-		// you entend to add more time
-		deadline.setSeconds(deadline.getSeconds() + 180);
-		return deadline;
-	}
-
-	// We can use useEffect so that when the component
-	// mount the timer will start as soon as possible
-
-	// We put empty array to act as componentDid
-	// mount only
-	useEffect(() => {
-		clearTimer(getDeadTime());
-	}, []);
-
-	// Another way to call the clearTimer() to start
-	// the countdown is via action event from the
-	// button first we create function to be called
-	// by the button
-	const onClickReset = () => {
-		clearTimer(getDeadTime());
-	}
-
-	return (
-		<div className="App">
-			<h2>{timer}</h2>
-			<button onClick={onClickReset}>Reset</button>
-		</div>
-	)
+      if (total<= 0) {
+        // setDisplayTime(false);
+        elem.innerHTML = `OTP expired! Please click on <span style="font-weight:600">RESEND OTP</span> to generate a new OTP.`; //SAFD - 129719 - Gayathri - 21-jan-22
+        clearInterval(timerId);
+      }
+    }, 1000);
+  };
+  const NOW_IN_MS = new Date().getTime();
+  const dateTimeAfterThreeDays = NOW_IN_MS + 180000;
+  return (
+    <div className="App">
+      <header className="App-header">
+       
+      
+        {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
+          <span className="font-12 orange orange-link">
+            <button onClick={()=>{displayTimer(180)}}>start</button>
+          <span id="otpCountDownTimer" />{" "}
+          <span>Time:17:29</span>
+          {/* <button onClick={()=>{play()}}>click start</button>
+          <h3  className="seconds"> {tiime}</h3> */}
+          {/* <h3>{`${minutes}:${seconds}`}</h3> */}
+        </span>
+        <div>
+      {/* <h1>Countdown Timer</h1>
+      <CountdownTimer targetDate={dateTimeAfterThreeDays} /> */}
+    </div>
+      </header>
+    </div>
+  );
 }
 
 export default App;
