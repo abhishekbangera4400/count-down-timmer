@@ -1,65 +1,100 @@
-import React,{useEffect,useCallback,useState} from "react"
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {SecondsTohhmmss} from './utils'
+import PropTypes from 'prop-types'
 
-function App() {
-  const [timer, setTimer] = useState(180);    
-  const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
+let offset = null, interval = null
 
-  // useEffect(() => {
-  //   timer > 0 && setTimeout(timeOutCallback, 1000);
-  // }, [timer, timeOutCallback]);
-
-const resetTimer = function () {
-  if (!timer) {
-    setTimer(180);
+/**
+ * Timer module
+ * A simple timer component.
+**/
+export default class App extends Component {
+  static get propTypes () {
+    return {
+      options: PropTypes.object
+    }
   }
-};
-  
-  const displayTimer = (timeInSeconds, id = '') => {
-    let timerId;
-    var timer = timeInSeconds,
-      minutes,
-      seconds;
-    timerId = window.setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
 
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
+  constructor(props) {
+    super(props)
+    this.state = { clock: 0, time: '' }
+  }
 
-      const elem = document.getElementById('otpCountDownTimer');
-      if (elem === null) {
-        clearInterval(timerId);
-      }
-      elem.innerHTML =
-        'OTP will expire in ' + minutes + ':' + seconds;
+  componentDidMount() {
+    this.play()
+  }
 
-      if (--timer < 0) {
-        // setDisplayTime(false);
-        elem.innerHTML = `OTP expired! Please click on <span style="font-weight:600">RESEND OTP</span> to generate a new OTP.`; //SAFD - 129719 - Gayathri - 21-jan-22
-        clearInterval(timerId);
-      }
-    }, 1000);
-  };
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      
-        {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
-          <span className="font-12 orange orange-link">
-            <button onClick={()=>{displayTimer(180)}}>start</button>
-          <span id="otpCountDownTimer" />{" "}
-          <span>Time:17:29</span>
-        </span>
-        
-      </header>
-    </div>
-  );
+  componentWillUnmount() {
+    this.pause()
+  }
+
+  pause() {
+    if (interval) {
+      clearInterval(interval)
+      interval = null
+    }
+  }
+
+  play() {
+    if (!interval) {
+      offset = Date.now()
+      interval = setInterval(this.update.bind(this), 1000)
+    }
+  }
+
+  reset() {
+    let clockReset = 0
+    this.setState({clock: clockReset })
+    let time = SecondsTohhmmss(clockReset / 1000)
+    this.setState({time: time })
+  }
+
+  update() {
+    let clock = this.state.clock
+    clock += this.calculateOffset()
+    this.setState({clock: clock })
+    let time = SecondsTohhmmss(clock / 1000)
+    this.setState({time: time })
+  }
+
+  calculateOffset() {
+    let now = Date.now()
+    let newOffset = now - offset
+    offset = now
+    return newOffset
+  }
+
+  render() {
+    const timerStyle = {
+      margin: "0px",
+      padding: "2em"
+    };
+
+    const buttonStyle = {
+      background: "#fff",
+      color: "#666",
+      border: "1px solid #ddd",
+      marginRight: "5px",
+      padding: "10px",
+      fontWeight: "200"
+    };
+
+    const secondsStyles = {
+      fontSize: "200%",
+      fontWeight: "200",
+      lineHeight: "1.5",
+      margin: "0",
+      color: "#666"
+    };
+
+    return (
+      <div style={timerStyle} className="react-timer">
+        <h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3>
+        <br />
+        <button onClick={this.reset.bind(this)} style={buttonStyle} >reset</button>
+        <button onClick={this.play.bind(this)} style={buttonStyle} >play</button>
+        <button onClick={this.pause.bind(this)} style={buttonStyle} >pause</button>
+      </div>
+    )
+  }
 }
-
-export default App;
