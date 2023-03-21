@@ -1,6 +1,7 @@
 import React from "react"
 import logo from './logo.svg';
 import './App.css';
+import './main.css';
 import SelectSearch from './ReactSelectSearch';
 import 'react-select-search/style.css'
 let offset = null, interval = null
@@ -52,11 +53,20 @@ function App() {
     <div className="App">
      
       
-      <header className="App-header">
+      {/* <header className="App-header"> */}
       
         {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
-          <span className="font-12 orange orange-link">
+          {/* <span className="font-12 orange orange-link"> */}
           {/* <SelectSearch options={options} value="sv" name="language" placeholder="Choose your language" /> */}
+<div className="main-page">
+<div className="column-3" >
+<div className="input-container" >
+<div
+                      className='custom-select-search custom-upload-inputs custom-color-orange'
+                      id={"hsgdg"}
+                      onClick={async () => {""
+                      }}
+                    >
           <SelectSearch
                         search
                         options={options}
@@ -68,18 +78,29 @@ function App() {
                         // onChange={e => onChangeText(e, occupation.id, occupation.gtm_id)}
                         // id={`${CONST_NAME.ID}${occupation.id}`}
                       />
+                      </div>
+                       </div>
+                      </div>
+                      </div>
+                      
+
+
+
+
+
+
             <button onClick={()=>{displayTimer(180)}}>start</button>
           <span id="otpCountDownTimer" />{" "}
           <span>Time:17:29</span>
           {/* <button onClick={()=>{play()}}>click start</button>
           <h3  className="seconds"> {tiime}</h3> */}
           {/* <h3>{`${minutes}:${seconds}`}</h3> */}
-        </span>
+        {/* </span> */}
         <div>
       {/* <h1>Countdown Timer</h1>
       <CountdownTimer targetDate={dateTimeAfterThreeDays} /> */}
     </div>
-      </header>
+      {/* </header> */}
     </div>
   );
 }

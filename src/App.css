@@ -36,3 +36,103 @@
     transform: rotate(360deg);
   }
 }
+
+
+.main-page .column-3 {
+  flex: 0 0 27%;
+  max-width: 27%;
+}
+
+.main-page .column-3,
+.main-page .column-9 {
+  width: 100%;
+  min-height: 1px;
+  padding-right: 8px;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.main-page .column-4,
+.main-page .column-6,
+.main-page .column-7,
+.main-page .column-9,
+.main-page .column-10,
+.main-page .column-3,
+.main-page .column-12,
+.main-page .radio-flex {
+  flex: 0 0 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.column-3 {
+  flex:initial !important;
+  max-width:initial !important;
+}
+
+@media screen and (max-width: 767px) {
+  .main-page .column-6,
+  .main-page .column-9,
+  .main-page .column-3,
+  .main-page .column-12,
+  .main-page .radio-flex {
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap; }
+  .main-page .radio-content {
+    margin-bottom: 1rem; }
+  .main-page .page-content-head .flex-col {
+    display: none; }
+  .main-page .tick-button {
+    margin-bottom: 1rem;
+    display: block; }
+  .main-page .input-container {
+    margin-top: 1rem; }
+  .main-page .reference {
+    padding: 7px 5px; }
+  .main-page .timer {
+    display: none; }
+  .main-page .initiate {
+    overflow: initial;
+    transform-origin: top;
+    margin-right: auto; } }
+
+    .main-page .input-container {
+      margin-top: 1rem; }
+
+      .input-container {
+        margin-top: 1rem;
+      }
+
+      @media only screen and (max-width: 550px) {
+        #collapseDiv {
+          width: 100%;
+        }
+        .custom-select-search .select-search .select-search__value input {
+        -webkit-appearance: none !important;
+        color: #000000 !important;
+        }
+        .custom-select-search
+        .select-search
+        .select-search__select
+        .select-search__options
+        .select-search__option {
+        -webkit-appearance: none !important;
+        color: #000000 !important;
+        } 
+      }
+
+      .custom-upload-inputs {
+        width: 100% !important;
+      }
+
+      .custom-color-orange .select-search .select-search__select  {
+        width: 100% !important;
+      }
+      .custom-color-orange .select-search .select-search__value input:hover {
+        border: 1px solid var(--mainBorder) !important;
+      }
+      
+      .custom-color-orange .select-search .select-search__value input {
+        border: 1px solid var(--mainBorder) !important;
+      }

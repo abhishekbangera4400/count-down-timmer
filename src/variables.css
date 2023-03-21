@@ -1,0 +1,12 @@
+:root {
+    --mainBackground: #FFF6EC;
+    --mainBorder: #f27b1a;
+    --btnBgColor : #fa6f05;
+    --btnColor : #ffffff;
+    --opacity: 0.24;
+    --color: 255, 246, 236; 
+    --rdoBgColor: 255, 255, 255;
+    --opacityBtn: 0.6;
+    --rdoColor: 250, 111, 5;
+    --stepsBackgroundColor: #ffffff;
+  }
