@@ -58,7 +58,16 @@ function App() {
         {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
           {/* <span className="font-12 orange orange-link"> */}
           {/* <SelectSearch options={options} value="sv" name="language" placeholder="Choose your language" /> */}
-<div className="main-page">
+          
+          <div className="section-details main-page d-flex center-all4 w-86 custom-background-color " >
+          <div className="details-sub w-100">
+          <div className="fillForm_manual">
+          <div className="form">
+          <div className="grid-container">
+          <div className="grid-item undefined">
+
+
+
 <div className="column-3" >
 <div className="input-container" >
 <div
@@ -82,6 +91,12 @@ function App() {
                        </div>
                       </div>
                       </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+
                       
 
 
