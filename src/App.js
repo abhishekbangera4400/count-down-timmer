@@ -70,12 +70,17 @@ function App() {
 
 <div className="column-3" >
 <div className="input-container" >
+<label className='label-text mb-0 mr-2'>
+                      <span style={{ color: 'red', fontSize: 12 }}>*</span>
+                      Occupation
+                      </label>
 <div
                       className='custom-select-search custom-upload-inputs custom-color-orange'
                       id={"hsgdg"}
                       onClick={async () => {""
                       }}
                     >
+                     
           <SelectSearch
                         search
                         options={options}
