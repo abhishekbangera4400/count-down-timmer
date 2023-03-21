@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import {SecondsTohhmmss} from './utils'
 import CountdownTimer from './CountdownTimer';
-
-
+import SelectSearch from 'react-select-search';
+import 'react-select-search/style.css'
 let offset = null, interval = null
 
 
@@ -13,7 +13,11 @@ function App() {
   // const [seconds, setSeconds] = useState(0); 
 
 
-
+  const options = [
+    {name: 'Swedish', value: 'sv'},
+    {name: 'English', value: 'en'},
+   
+];
 
   
   const displayTimer = (timeInSeconds, id = '') => {
@@ -49,9 +53,10 @@ function App() {
   const dateTimeAfterThreeDays = NOW_IN_MS + 180000;
   return (
     <div className="App">
-      <header className="App-header">
-       
+     
       
+      <header className="App-header">
+      <SelectSearch options={options} value="sv" name="language" placeholder="Choose your language" />
         {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
           <span className="font-12 orange orange-link">
             <button onClick={()=>{displayTimer(180)}}>start</button>
