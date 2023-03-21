@@ -1,9 +1,7 @@
-import React,{useEffect,useCallback,useState} from "react"
+import React from "react"
 import logo from './logo.svg';
 import './App.css';
-import {SecondsTohhmmss} from './utils'
-import CountdownTimer from './CountdownTimer';
-import SelectSearch from 'react-select-search';
+import SelectSearch from './ReactSelectSearch';
 import 'react-select-search/style.css'
 let offset = null, interval = null
 
@@ -16,7 +14,6 @@ function App() {
   const options = [
     {name: 'Swedish', value: 'sv'},
     {name: 'English', value: 'en'},
-   
 ];
 
   
@@ -56,9 +53,21 @@ function App() {
      
       
       <header className="App-header">
-      <SelectSearch options={options} value="sv" name="language" placeholder="Choose your language" />
+      
         {/* <span  onClick={()=>{resetTimer()}}>Resend OTP ({timer})</span> */}
           <span className="font-12 orange orange-link">
+          {/* <SelectSearch options={options} value="sv" name="language" placeholder="Choose your language" /> */}
+          <SelectSearch
+                        search
+                        options={options}
+                        disabled={false}
+                        value={''}
+                        placeholder={"its my life"}
+                        // disabled={occupation.value === ''}
+                        style={{ fontSize: '12px' }}
+                        // onChange={e => onChangeText(e, occupation.id, occupation.gtm_id)}
+                        // id={`${CONST_NAME.ID}${occupation.id}`}
+                      />
             <button onClick={()=>{displayTimer(180)}}>start</button>
           <span id="otpCountDownTimer" />{" "}
           <span>Time:17:29</span>
