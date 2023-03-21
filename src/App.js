@@ -2,6 +2,7 @@ import React from "react"
 import logo from './logo.svg';
 import './App.css';
 import './main.css';
+import './style.css';
 import SelectSearch from './ReactSelectSearch';
 import 'react-select-search/style.css'
 let offset = null, interval = null
